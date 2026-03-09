@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Právní asistent ČR — M365 Copilot Agent</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-center">
+            <h1>Právní asistent ČR</h1>
+            <p class="subtitle">Agent pro M365 Copilot — vyhledávání v českých zákonech a právních předpisech z otevřených dat e-Sbírky</p>
+            <div class="badge-row">
+                <span class="badge">112 753 fragmentů zákonů</span>
+                <span class="badge">46 376 právních předpisů</span>
+                <span class="badge">e-Sbírka OpenData</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="site-nav">
+        <div class="container">
+            <a href="#prehled" class="active">Přehled</a>
+            <a href="#prompty">Příklady</a>
+            <a href="#faq">FAQ</a>
+            <a href="user-guide.html">Uživatelský návod</a>
+            <a href="admin-guide.html">Návod pro adminy</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section id="prehled">
+            <h2>Právní asistent ČR</h2>
+            <p class="lead">
+                Agent pro M365 Copilot, který vyhledává v plných textech českých zákonů a právních předpisů
+                z e-Sbírky zákonů a mezinárodních smluv (otevřená data Ministerstva vnitra ČR).
+                Odpovídá česky, cituje doslovné znění zákonů a nikdy si nevymýšlí obsah.
+            </p>
+
+            <h3>Co agent umí</h3>
+            <ul class="feature-list">
+                <li class="yes">Vyhledat v plných textech zákonů, vyhlášek, nařízení vlády a dalších právních předpisů</li>
+                <li class="yes">Zobrazit doslovné znění konkrétního paragrafu, článku nebo odstavce</li>
+                <li class="yes">Filtrovat podle typu předpisu (zákon, vyhláška, nařízení vlády, nález ÚS)</li>
+                <li class="yes">Filtrovat podle roku, účinnosti k datu, sbírky (Sb., Sb.m.s.)</li>
+                <li class="yes">Zobrazit metadata předpisu (název, účinnost, zrušení, oblast úpravy, schvalovatel)</li>
+                <li class="yes">Zobrazit křížové odkazy mezi zákony (na co zákon odkazuje a co odkazuje na něj)</li>
+                <li class="yes">Zobrazit poslední změny a novely zákonů od zadaného data</li>
+                <li class="yes">Zahrnout nebo vyloučit zrušené předpisy</li>
+                <li class="yes">Kombinovat filtry — typ předpisu + rok + účinnost + sbírka</li>
+            </ul>
+
+            <h3>Co agent neumí / omezení</h3>
+            <ul class="feature-list">
+                <li class="no">Poskytnout právní radu — agent je vyhledávací nástroj, ne advokát</li>
+                <li class="no">Interpretovat zákon — zobrazuje doslovné znění, interpretaci ponechává na uživateli</li>
+                <li class="no">Vyhledávat v judikatuře — data neobsahují rozsudky soudů (kromě nálezů ÚS)</li>
+                <li class="no">Vyhledávat v důvodových zprávách k zákonům</li>
+                <li class="no">Sledovat legislativní proces (návrhy zákonů v Parlamentu)</li>
+                <li class="no">Odpovídat na dotazy mimo české právo</li>
+            </ul>
+
+            <h3>Dostupné nástroje</h3>
+            <table>
+                <thead>
+                    <tr><th>Nástroj</th><th>Zdroj</th><th>Popis</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>searchLaws</code></td>
+                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>Hybridní AI vyhledávání v plných textech zákonů — klíčová slova + vektory + sémantický reranker</td>
+                    </tr>
+                    <tr>
+                        <td><code>getLawSections</code></td>
+                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>Doslovné znění konkrétních paragrafů nebo článků daného zákona</td>
+                    </tr>
+                    <tr>
+                        <td><code>getLawMetadata</code></td>
+                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>Metadata předpisu — název, typ, účinnost, stav, oblast úpravy, schvalovatel</td>
+                    </tr>
+                    <tr>
+                        <td><code>getLawReferences</code></td>
+                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>Křížové odkazy — na které zákony předpis odkazuje a které odkazují na něj</td>
+                    </tr>
+                    <tr>
+                        <td><code>getRecentChanges</code></td>
+                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>Poslední změny a novely od zadaného data, s filtrem typu předpisu</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-warn">
+                <strong>Toto není právní rada.</strong> Agent zobrazuje doslovné znění zákonů z e-Sbírky. Pro právní posouzení se obraťte na kvalifikovaného právníka. Agent nikdy neinterpretuje zákon ani nedoporučuje postup.
+            </div>
+        </section>
+
+        <section id="prompty">
+            <h2>Příklady promptů</h2>
+            <p class="lead">Kliknutím zkopírujete do schránky. Prompty pokrývají všech 5 nástrojů agenta.</p>
+
+            <h4>Vyhledávání v zákonech</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Výpovědní doba</div>
+                    <div class="prompt-text">Jaká je výpovědní doba pracovního poměru podle zákoníku práce?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Náhrada škody</div>
+                    <div class="prompt-text">Co říká občanský zákoník o náhradě škody?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Trestní zákoník</div>
+                    <div class="prompt-text">Jaké jsou tresty za podvod podle trestního zákoníku?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Ochrana osobních údajů</div>
+                    <div class="prompt-text">Jak je ochrana osobních údajů upravena v českém právu?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Stavební zákon</div>
+                    <div class="prompt-text">Co říká nový stavební zákon o povolování staveb?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Daňové lhůty</div>
+                    <div class="prompt-text">Jaké jsou lhůty pro podání daňového přiznání?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Veřejné zakázky</div>
+                    <div class="prompt-text">Jaké jsou podmínky pro zadávání veřejných zakázek malého rozsahu?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Sankce za rychlost</div>
+                    <div class="prompt-text">Jaké jsou sankce za překročení rychlosti podle zákona o silničním provozu?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Konkrétní paragrafy</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Minimální mzda</div>
+                    <div class="prompt-text">Ukaž mi §109 zákoníku práce (262/2006 Sb.) o minimální mzdě</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Listina práv</div>
+                    <div class="prompt-text">Zobraz článek 11 Listiny základních práv a svobod (2/1993 Sb.)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Neplatnost právního jednání</div>
+                    <div class="prompt-text">Co říká §580 občanského zákoníku o neplatnosti právního jednání?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Výpověď z nájmu</div>
+                    <div class="prompt-text">Ukaž mi §2288 občanského zákoníku o výpovědi z nájmu bytu</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Výpovědní důvody</div>
+                    <div class="prompt-text">Zobraz §52 zákoníku práce — výpovědní důvody zaměstnavatele</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Trest odnětí svobody</div>
+                    <div class="prompt-text">Ukaž mi §209 trestního zákoníku (40/2009 Sb.) o podvodu</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Metadata právních předpisů</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Účinnost občanského zákoníku</div>
+                    <div class="prompt-text">Kdy nabyl účinnosti občanský zákoník (89/2012 Sb.)?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Platnost stavebního zákona</div>
+                    <div class="prompt-text">Je stavební zákon 283/2021 Sb. stále platný?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Informace o zákoně</div>
+                    <div class="prompt-text">Zobraz základní informace o insolvenčním zákoně (182/2006 Sb.)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Oblast úpravy</div>
+                    <div class="prompt-text">Jakou oblast úpravy pokrývá zákon 134/2016 Sb. o zadávání veřejných zakázek?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Křížové odkazy</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Odkazy zákoníku práce</div>
+                    <div class="prompt-text">Na které zákony odkazuje zákoník práce (262/2006 Sb.)?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Kdo odkazuje na OZ</div>
+                    <div class="prompt-text">Které zákony odkazují na občanský zákoník (89/2012 Sb.)?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Vazby trestního zákoníku</div>
+                    <div class="prompt-text">Zobraz křížové odkazy trestního zákoníku (40/2009 Sb.)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Odkazy stavebního zákona</div>
+                    <div class="prompt-text">Na co odkazuje stavební zákon 283/2021 Sb.?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Poslední změny zákonů</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Nové zákony</div>
+                    <div class="prompt-text">Jaké zákony se změnily v posledních 3 měsících?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Změny za rok</div>
+                    <div class="prompt-text">Jaké nové zákony nabyly účinnosti v roce 2025?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Nové vyhlášky</div>
+                    <div class="prompt-text">Jaké vyhlášky se změnily za poslední měsíc?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Novely zákonů</div>
+                    <div class="prompt-text">Jaká nařízení vlády nabyla účinnosti od ledna 2025?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Pokročilé dotazy s filtry</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Účinnost k datu</div>
+                    <div class="prompt-text">Najdi ustanovení o ochraně spotřebitele účinná k 1. 1. 2024</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Pouze zákony</div>
+                    <div class="prompt-text">Vyhledej „pracovní doba" pouze v zákonech (ne vyhláškách)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Mezinárodní smlouvy</div>
+                    <div class="prompt-text">Najdi mezinárodní smlouvy o zamezení dvojího zdanění ve sbírce Sb.m.s.</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Včetně zrušených</div>
+                    <div class="prompt-text">Hledej „nájem bytu" včetně zrušených předpisů</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Známé problémy a omezení</h3>
+            <div class="card">
+                <div class="card-title"><span class="status-info">Pouze doslovné citace</span></div>
+                <p>Agent zobrazuje přesný text zákonů z e-Sbírky. Neposkytuje právní výklad ani interpretaci. Pro právní posouzení se obraťte na advokáta.</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span class="status-info">Bez judikatury</span></div>
+                <p>Data neobsahují rozsudky soudů — agent pracuje pouze s právními předpisy (zákony, vyhlášky, nařízení vlády, nálezy ÚS). Judikaturu hledejte v ASPI, Beck-online nebo na justice.cz.</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span class="status-info">Aktuálnost dat</span></div>
+                <p>Data pochází z otevřených dat e-Sbírky (Ministerstvo vnitra ČR). Aktualizace probíhá periodicky — nejnovější novely mohou být k dispozici s mírným zpožděním.</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span class="status-info">Struktura dat e-Sbírky</span></div>
+                <p>e-Sbírka publikuje jednotlivé předpisy <strong>tak, jak byly vyhlášeny</strong> (novely, ne konsolidované znění). Dotaz na „§109 zákoníku práce" agent vyřeší přes semantic search — najde příslušné novely, které daný paragraf upravují, a zobrazí jejich doslovné znění.</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span class="status-info">Dlouhé paragrafy</span></div>
+                <p>Některé paragrafy mají rozsáhlý text. Agent je zobrazí celé (nezestručňuje), proto odpovědi mohou být delší.</p>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>Často kladené otázky</h2>
+            <p class="lead">Odpovědi na časté dotazy ohledně agenta Právní asistent ČR.</p>
+
+            <details>
+                <summary>Kde agenta najdu v M365 Copilotu?</summary>
+                <div class="detail-body">
+                    <p>Agent je dostupný výhradně v prostředí <strong>M365 Copilot</strong>. Najdete ho v <strong>levém panelu</strong> Copilotu, nebo ho zavolejte přes ikonu <strong>@</strong> — začněte psát <strong>@Právní asistent ČR</strong>.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Agent neodpovídá / vrací chybu</summary>
+                <div class="detail-body">
+                    <p>Možné příčiny:</p>
+                    <ul>
+                        <li><strong>Backend se probouzí</strong> — po delší neaktivitě může server potřebovat pár sekund na start (scale from zero).</li>
+                        <li><strong>Dočasný výpadek</strong> — Azure služby mohou být krátkodobě nedostupné.</li>
+                    </ul>
+                    <p>Zkuste dotaz zopakovat za minutu. Pokud problém přetrvává, kontaktujte správce.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Agent si vymýšlí texty zákonů</summary>
+                <div class="detail-body">
+                    <p>Agent je nastavený tak, aby <strong>nepoužíval vlastní znalosti</strong> a čerpal pouze z e-Sbírky. Pokud si přesto vymýšlí:</p>
+                    <ul>
+                        <li>Ověřte, že jste agenta zavolali přes <strong>@Právní asistent ČR</strong> (ne obecný Copilot)</li>
+                        <li>Zkuste dotaz přeformulovat</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Jak zadat citaci zákona?</summary>
+                <div class="detail-body">
+                    <p>Citaci zadejte ve formátu <strong>číslo/rok</strong> bez „Sb." — například:</p>
+                    <ul>
+                        <li><strong>89/2012</strong> — občanský zákoník</li>
+                        <li><strong>262/2006</strong> — zákoník práce</li>
+                        <li><strong>40/2009</strong> — trestní zákoník</li>
+                        <li><strong>500/2004</strong> — správní řád</li>
+                    </ul>
+                    <p>Můžete také použít název: „zákoník práce", „občanský zákoník", „trestní zákoník" — agent najde citaci sám.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Jaký je rozdíl mezi searchLaws a getLawSections?</summary>
+                <div class="detail-body">
+                    <p><strong>searchLaws</strong> prohledává všechny zákony najednou — použijte pro obecné dotazy jako „ochrana spotřebitele" nebo „náhrada škody".</p>
+                    <p><strong>getLawSections</strong> zobrazí konkrétní paragraf jednoho zákona — použijte pro „§109 zákoníku práce" nebo „článek 11 Listiny".</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Mohu výsledky použít jako právní podklad?</summary>
+                <div class="detail-body">
+                    <p>Agent zobrazuje <strong>doslovné znění zákonů z e-Sbírky</strong>. Texty jsou autentické, protože pochází z úředního zdroje (Ministerstvo vnitra ČR).</p>
+                    <p>Pro právní posouzení nebo soudní podání se však vždy obraťte na <strong>kvalifikovaného právníka</strong>. Agent nenahrazuje právní služby.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Co je e-Sbírka?</summary>
+                <div class="detail-body">
+                    <p><strong>e-Sbírka zákonů a mezinárodních smluv</strong> je úřední publikační platforma Ministerstva vnitra ČR. Obsahuje plné texty všech právních předpisů ČR od roku 1918 do současnosti.</p>
+                    <p>Agent čerpá z <strong>otevřených dat e-Sbírky</strong> dostupných na <a href="https://www.e-sbirka.cz" target="_blank">www.e-sbirka.cz</a>.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Proč agent nezná judikaturu?</summary>
+                <div class="detail-body">
+                    <p>Agent pracuje s <strong>právními předpisy</strong> (zákony, vyhlášky, nařízení vlády, nálezy ÚS). Rozsudky obecných soudů jsou spravovány <strong>Ministerstvem spravedlnosti</strong> a nejsou součástí e-Sbírky.</p>
+                    <p>Pro judikaturu použijte <a href="https://www.justice.cz" target="_blank">justice.cz</a>, ASPI nebo Beck-online.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Proč agent u některých zákonů nevrátí konkrétní paragraf?</summary>
+                <div class="detail-body">
+                    <p>e-Sbírka publikuje právní předpisy <strong>jednotlivě, jak byly vyhlášeny</strong> — tj. novely, ne konsolidované texty. Proto dotaz „§109 zákoníku práce (262/2006 Sb.)" nemusí najít přímý záznam pod touto citací.</p>
+                    <p>Agent v takovém případě automaticky použije <strong>sémantické vyhledávání</strong> a najde příslušné novely, jejichž text daný paragraf upravuje. Výsledek je stejný — doslovné znění z e-Sbírky.</p>
+                </div>
+            </details>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            Poslední aktualizace: červen 2025 · Právní asistent ČR — M365 Copilot Agent · Zdroj: e-Sbírka zákonů (<a href="https://www.e-sbirka.cz" target="_blank">www.e-sbirka.cz</a>)
+        </div>
+    </footer>
+
+    <script>
+    function copyPrompt(el) {
+        const text = el.querySelector('.prompt-text').textContent;
+        navigator.clipboard.writeText(text);
+        el.classList.add('copied');
+        const hint = el.querySelector('.copy-hint');
+        hint.textContent = 'zkopírováno ✓';
+        setTimeout(() => {
+            el.classList.remove('copied');
+            hint.textContent = 'kopírovat';
+        }, 1500);
+    }
+    document.querySelectorAll('.site-nav a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            document.querySelectorAll('.site-nav a').forEach(n => n.classList.remove('active'));
+            a.classList.add('active');
+        });
+    });
+    </script>
+</body>
+</html>
