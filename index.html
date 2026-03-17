@@ -10,11 +10,12 @@
     <header class="site-header">
         <div class="container header-center">
             <h1>Právní asistent ČR</h1>
-            <p class="subtitle">Agent pro M365 Copilot — vyhledávání v českých zákonech a právních předpisech z otevřených dat e-Sbírky</p>
+            <p class="subtitle">Agent pro M365 Copilot — české zákony, judikatura, legislativa EU a rozhodnutí SDEU</p>
             <div class="badge-row">
-                <span class="badge">112 753 fragmentů zákonů</span>
-                <span class="badge">46 376 právních předpisů</span>
-                <span class="badge">e-Sbírka OpenData</span>
+                <span class="badge">e-Sbírka · 112 753 fragmentů</span>
+                <span class="badge">Judikatura · české soudy</span>
+                <span class="badge">EUR-Lex · legislativa EU</span>
+                <span class="badge">SDEU · rozhodnutí</span>
             </div>
         </div>
     </header>
@@ -34,32 +35,39 @@
         <section id="prehled">
             <h2>Právní asistent ČR</h2>
             <p class="lead">
-                Agent pro M365 Copilot, který vyhledává v plných textech českých zákonů a právních předpisů
-                z e-Sbírky zákonů a mezinárodních smluv (otevřená data Ministerstva vnitra ČR).
-                Odpovídá česky, cituje doslovné znění zákonů a nikdy si nevymýšlí obsah.
+                Agent pro M365 Copilot, který vyhledává ve čtyřech právních zdrojích: české zákony (e-Sbírka),
+                judikatura českých soudů, legislativa EU (EUR-Lex) a rozhodnutí Soudního dvora EU.
+                Odpovídá česky, cituje doslovné znění a nikdy si nevymýšlí obsah.
             </p>
+
+            <h3>Datové zdroje</h3>
+            <ul>
+                <li><strong>e-Sbírka zákonů</strong> — 46 376 právních předpisů ČR (zákony, vyhlášky, nařízení vlády, nálezy ÚS) od roku 1918, rozčleněných na 112 753 prohledávatelných fragmentů</li>
+                <li><strong>Judikatura českých soudů</strong> — rozhodnutí Nejvyššího soudu, Nejvyššího správního soudu, Ústavního soudu a krajských soudů z databáze justice.cz</li>
+                <li><strong>Legislativa EU (EUR-Lex)</strong> — nařízení, směrnice a rozhodnutí Evropské unie z databáze EUR-Lex</li>
+                <li><strong>Rozhodnutí SDEU</strong> — rozsudky a stanoviska Soudního dvora EU a Tribunálu</li>
+            </ul>
 
             <h3>Co agent umí</h3>
             <ul class="feature-list">
                 <li class="yes">Vyhledat v plných textech zákonů, vyhlášek, nařízení vlády a dalších právních předpisů</li>
                 <li class="yes">Zobrazit doslovné znění konkrétního paragrafu, článku nebo odstavce</li>
-                <li class="yes">Filtrovat podle typu předpisu (zákon, vyhláška, nařízení vlády, nález ÚS)</li>
-                <li class="yes">Filtrovat podle roku, účinnosti k datu, sbírky (Sb., Sb.m.s.)</li>
-                <li class="yes">Zobrazit metadata předpisu (název, účinnost, zrušení, oblast úpravy, schvalovatel)</li>
-                <li class="yes">Zobrazit křížové odkazy mezi zákony (na co zákon odkazuje a co odkazuje na něj)</li>
-                <li class="yes">Zobrazit poslední změny a novely zákonů od zadaného data</li>
-                <li class="yes">Zahrnout nebo vyloučit zrušené předpisy</li>
-                <li class="yes">Kombinovat filtry — typ předpisu + rok + účinnost + sbírka</li>
+                <li class="yes">Filtrovat podle typu předpisu, roku, účinnosti k datu, sbírky (Sb., Sb.m.s.)</li>
+                <li class="yes">Zobrazit metadata předpisu, křížové odkazy a poslední novely</li>
+                <li class="yes">Vyhledat v judikatuře českých soudů — podle soudu, typu rozhodnutí, data, odkazovaného zákona</li>
+                <li class="yes">Zobrazit detail rozhodnutí podle ECLI identifikátoru</li>
+                <li class="yes">Vyhledat v legislativě EU — nařízení, směrnice, rozhodnutí, filtrace podle roku a typu</li>
+                <li class="yes">Zobrazit detail předpisu EU podle CELEX čísla</li>
+                <li class="yes">Vyhledat v rozhodnutích SDEU — podle typu řízení, země původu, soudu</li>
+                <li class="yes">Kombinovat zdroje — najít český zákon i relevantní EU legislativu k tématu</li>
             </ul>
 
             <h3>Co agent neumí / omezení</h3>
             <ul class="feature-list">
                 <li class="no">Poskytnout právní radu — agent je vyhledávací nástroj, ne advokát</li>
                 <li class="no">Interpretovat zákon — zobrazuje doslovné znění, interpretaci ponechává na uživateli</li>
-                <li class="no">Vyhledávat v judikatuře — data neobsahují rozsudky soudů (kromě nálezů ÚS)</li>
                 <li class="no">Vyhledávat v důvodových zprávách k zákonům</li>
                 <li class="no">Sledovat legislativní proces (návrhy zákonů v Parlamentu)</li>
-                <li class="no">Odpovídat na dotazy mimo české právo</li>
             </ul>
 
             <h3>Dostupné nástroje</h3>
@@ -70,42 +78,72 @@
                 <tbody>
                     <tr>
                         <td><code>searchLaws</code></td>
-                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>e-Sbírka</td>
                         <td>Hybridní AI vyhledávání v plných textech zákonů — klíčová slova + vektory + sémantický reranker</td>
                     </tr>
                     <tr>
                         <td><code>getLawSections</code></td>
-                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>e-Sbírka</td>
                         <td>Doslovné znění konkrétních paragrafů nebo článků daného zákona</td>
                     </tr>
                     <tr>
                         <td><code>getLawMetadata</code></td>
-                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>e-Sbírka</td>
                         <td>Metadata předpisu — název, typ, účinnost, stav, oblast úpravy, schvalovatel</td>
                     </tr>
                     <tr>
                         <td><code>getLawReferences</code></td>
-                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>e-Sbírka</td>
                         <td>Křížové odkazy — na které zákony předpis odkazuje a které odkazují na něj</td>
                     </tr>
                     <tr>
                         <td><code>getRecentChanges</code></td>
-                        <td>e-Sbírka / Azure AI Search</td>
+                        <td>e-Sbírka</td>
                         <td>Poslední změny a novely od zadaného data, s filtrem typu předpisu</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchCourtDecisions</code></td>
+                        <td>Judikatura</td>
+                        <td>Hybridní vyhledávání v rozhodnutích českých soudů — filtr soudu, typu, data, odkazovaného zákona</td>
+                    </tr>
+                    <tr>
+                        <td><code>getCourtDecisionDetail</code></td>
+                        <td>Judikatura</td>
+                        <td>Detail rozhodnutí podle ECLI — plný text, metadata, právní věta</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchEULegislation</code></td>
+                        <td>EUR-Lex</td>
+                        <td>Hybridní vyhledávání v legislativě EU — nařízení, směrnice, rozhodnutí</td>
+                    </tr>
+                    <tr>
+                        <td><code>getEULegislationDetail</code></td>
+                        <td>EUR-Lex</td>
+                        <td>Detail předpisu EU podle CELEX čísla — plný text, metadata</td>
+                    </tr>
+                    <tr>
+                        <td><code>searchCJEUCases</code></td>
+                        <td>SDEU</td>
+                        <td>Hybridní vyhledávání v rozhodnutích SDEU — filtr soudu, typu řízení, země, postupu</td>
+                    </tr>
+                    <tr>
+                        <td><code>getCJEUCaseDetail</code></td>
+                        <td>SDEU</td>
+                        <td>Detail rozhodnutí SDEU podle CELEX čísla — plný text, metadata</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="callout callout-warn">
-                <strong>Toto není právní rada.</strong> Agent zobrazuje doslovné znění zákonů z e-Sbírky. Pro právní posouzení se obraťte na kvalifikovaného právníka. Agent nikdy neinterpretuje zákon ani nedoporučuje postup.
+                <strong>Toto není právní rada.</strong> Agent zobrazuje doslovné znění zákonů, judikatury a legislativy EU. Pro právní posouzení se obraťte na kvalifikovaného právníka. Agent nikdy neinterpretuje zákon ani nedoporučuje postup.
             </div>
         </section>
 
         <section id="prompty">
             <h2>Příklady promptů</h2>
-            <p class="lead">Kliknutím zkopírujete do schránky. Prompty pokrývají všech 5 nástrojů agenta.</p>
+            <p class="lead">Kliknutím zkopírujete do schránky. Prompty pokrývají všech 11 nástrojů agenta.</p>
 
-            <h4>Vyhledávání v zákonech</h4>
+            <h4>Vyhledávání v zákonech (e-Sbírka)</h4>
             <div class="prompt-grid">
                 <div class="prompt" onclick="copyPrompt(this)">
                     <div class="prompt-label">Výpovědní doba</div>
@@ -278,29 +316,141 @@
                     <span class="copy-hint">kopírovat</span>
                 </div>
             </div>
+
+            <h4>Judikatura českých soudů</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Náhrada škody</div>
+                    <div class="prompt-text">Najdi judikaturu Nejvyššího soudu k náhradě škody způsobené zaměstnancem</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Neplatná výpověď</div>
+                    <div class="prompt-text">Jak soudy rozhodují o neplatnosti výpovědi z pracovního poměru?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Ústavní soud</div>
+                    <div class="prompt-text">Najdi nálezy Ústavního soudu k právu na spravedlivý proces</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Správní soud</div>
+                    <div class="prompt-text">Jak Nejvyšší správní soud rozhodoval o přiměřenosti správních sankcí?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Bezdůvodné obohacení</div>
+                    <div class="prompt-text">Najdi rozhodnutí soudů o bezdůvodném obohacení za posledních 5 let</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">ECLI detail</div>
+                    <div class="prompt-text">Zobraz detail rozhodnutí ECLI:CZ:NS:2023:21Cdo.1234.2023.1</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Legislativa EU (EUR-Lex)</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">GDPR</div>
+                    <div class="prompt-text">Co říká GDPR o právu být zapomenut?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Směrnice o DPH</div>
+                    <div class="prompt-text">Najdi ustanovení EU směrnice o DPH pro přeshraniční služby</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Nařízení EU</div>
+                    <div class="prompt-text">Najdi nařízení EU o kontrole zahraničních subvencí</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">AI Act</div>
+                    <div class="prompt-text">Co říká nařízení EU o umělé inteligenci (AI Act) o vysoce rizikových systémech?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Směrnice o whistleblowingu</div>
+                    <div class="prompt-text">Najdi obsah EU směrnice o ochraně oznamovatelů (whistleblowing)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">CELEX detail</div>
+                    <div class="prompt-text">Zobraz detail legislativního aktu EU s CELEX číslem 32016R0679</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Rozhodnutí SDEU</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Ochrana spotřebitele</div>
+                    <div class="prompt-text">Jak SDEU rozhodoval o ochraně spotřebitele v online obchodě?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Hospodářská soutěž</div>
+                    <div class="prompt-text">Najdi rozhodnutí SDEU o zneužití dominantního postavení</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Předběžná otázka z ČR</div>
+                    <div class="prompt-text">Najdi rozhodnutí SDEU na předběžnou otázku položenou z České republiky</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Pracovní právo EU</div>
+                    <div class="prompt-text">Jak SDEU rozhodoval o převodech podniků a ochraně zaměstnanců?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h4>Kombinované dotazy napříč zdroji</h4>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Zákon + judikatura</div>
+                    <div class="prompt-text">Co říká zákoník práce o výpovědi a jak to vykládají české soudy?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">ČR + EU</div>
+                    <div class="prompt-text">Jak je ochrana osobních údajů upravena v českém zákoně i v GDPR?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Kompletní přehled</div>
+                    <div class="prompt-text">Najdi český zákon, EU legislativu i judikaturu k tématu nekalé obchodní praktiky</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">EU směrnice + ČR implementace</div>
+                    <div class="prompt-text">Jak Česko implementovalo EU směrnici o ochraně oznamovatelů? Najdi český zákon i původní směrnici.</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
         </section>
 
         <section>
             <h3>Známé problémy a omezení</h3>
             <div class="card">
                 <div class="card-title"><span class="status-info">Pouze doslovné citace</span></div>
-                <p>Agent zobrazuje přesný text zákonů z e-Sbírky. Neposkytuje právní výklad ani interpretaci. Pro právní posouzení se obraťte na advokáta.</p>
-            </div>
-            <div class="card">
-                <div class="card-title"><span class="status-info">Bez judikatury</span></div>
-                <p>Data neobsahují rozsudky soudů — agent pracuje pouze s právními předpisy (zákony, vyhlášky, nařízení vlády, nálezy ÚS). Judikaturu hledejte v ASPI, Beck-online nebo na justice.cz.</p>
+                <p>Agent zobrazuje přesný text zákonů, judikatury a legislativy EU. Neposkytuje právní výklad ani interpretaci. Pro právní posouzení se obraťte na advokáta.</p>
             </div>
             <div class="card">
                 <div class="card-title"><span class="status-info">Aktuálnost dat</span></div>
-                <p>Data pochází z otevřených dat e-Sbírky (Ministerstvo vnitra ČR). Aktualizace probíhá periodicky — nejnovější novely mohou být k dispozici s mírným zpožděním.</p>
+                <p>Data pochází z otevřených zdrojů (e-Sbírka, justice.cz, EUR-Lex). Aktualizace probíhá periodicky — nejnovější novely nebo rozhodnutí mohou být k dispozici s mírným zpožděním.</p>
             </div>
             <div class="card">
                 <div class="card-title"><span class="status-info">Struktura dat e-Sbírky</span></div>
                 <p>e-Sbírka publikuje jednotlivé předpisy <strong>tak, jak byly vyhlášeny</strong> (novely, ne konsolidované znění). Dotaz na „§109 zákoníku práce" agent vyřeší přes semantic search — najde příslušné novely, které daný paragraf upravují, a zobrazí jejich doslovné znění.</p>
             </div>
             <div class="card">
-                <div class="card-title"><span class="status-info">Dlouhé paragrafy</span></div>
-                <p>Některé paragrafy mají rozsáhlý text. Agent je zobrazí celé (nezestručňuje), proto odpovědi mohou být delší.</p>
+                <div class="card-title"><span class="status-info">Dlouhé texty</span></div>
+                <p>Některé paragrafy nebo rozhodnutí mají rozsáhlý text. Agent je zobrazí celé (nezestručňuje), proto odpovědi mohou být delší.</p>
             </div>
         </section>
 
@@ -330,7 +480,7 @@
             <details>
                 <summary>Agent si vymýšlí texty zákonů</summary>
                 <div class="detail-body">
-                    <p>Agent je nastavený tak, aby <strong>nepoužíval vlastní znalosti</strong> a čerpal pouze z e-Sbírky. Pokud si přesto vymýšlí:</p>
+                    <p>Agent je nastavený tak, aby <strong>nepoužíval vlastní znalosti</strong> a čerpal pouze z ověřených zdrojů (e-Sbírka, justice.cz, EUR-Lex). Pokud si přesto vymýšlí:</p>
                     <ul>
                         <li>Ověřte, že jste agenta zavolali přes <strong>@Právní asistent ČR</strong> (ne obecný Copilot)</li>
                         <li>Zkuste dotaz přeformulovat</li>
@@ -353,6 +503,30 @@
             </details>
 
             <details>
+                <summary>Jak hledat v judikatuře?</summary>
+                <div class="detail-body">
+                    <p>Ptejte se přirozeným jazykem, agent automaticky zavolá <strong>searchCourtDecisions</strong>. Můžete specifikovat:</p>
+                    <ul>
+                        <li><strong>Soud</strong> — Nejvyšší soud, Ústavní soud, Nejvyšší správní soud, krajský soud</li>
+                        <li><strong>Téma</strong> — „judikatura k náhradě škody", „rozhodnutí o neplatnosti výpovědi"</li>
+                        <li><strong>ECLI</strong> — pokud znáte identifikátor, agent zobrazí plný text</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Jak hledat v legislativě EU?</summary>
+                <div class="detail-body">
+                    <p>Ptejte se česky, agent prohledá EUR-Lex. Můžete použít:</p>
+                    <ul>
+                        <li><strong>Přirozený jazyk</strong> — „Co říká GDPR o právu být zapomenut?"</li>
+                        <li><strong>CELEX číslo</strong> — „Zobraz detail 32016R0679" (pro GDPR)</li>
+                        <li><strong>Typ dokumentu</strong> — „Najdi nařízení EU o..."</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
                 <summary>Jaký je rozdíl mezi searchLaws a getLawSections?</summary>
                 <div class="detail-body">
                     <p><strong>searchLaws</strong> prohledává všechny zákony najednou — použijte pro obecné dotazy jako „ochrana spotřebitele" nebo „náhrada škody".</p>
@@ -363,7 +537,7 @@
             <details>
                 <summary>Mohu výsledky použít jako právní podklad?</summary>
                 <div class="detail-body">
-                    <p>Agent zobrazuje <strong>doslovné znění zákonů z e-Sbírky</strong>. Texty jsou autentické, protože pochází z úředního zdroje (Ministerstvo vnitra ČR).</p>
+                    <p>Agent zobrazuje <strong>doslovné znění</strong> z autentických zdrojů (e-Sbírka, justice.cz, EUR-Lex).</p>
                     <p>Pro právní posouzení nebo soudní podání se však vždy obraťte na <strong>kvalifikovaného právníka</strong>. Agent nenahrazuje právní služby.</p>
                 </div>
             </details>
@@ -377,18 +551,14 @@
             </details>
 
             <details>
-                <summary>Proč agent nezná judikaturu?</summary>
+                <summary>Mohu kombinovat české a EU právo v jednom dotazu?</summary>
                 <div class="detail-body">
-                    <p>Agent pracuje s <strong>právními předpisy</strong> (zákony, vyhlášky, nařízení vlády, nálezy ÚS). Rozsudky obecných soudů jsou spravovány <strong>Ministerstvem spravedlnosti</strong> a nejsou součástí e-Sbírky.</p>
-                    <p>Pro judikaturu použijte <a href="https://www.justice.cz" target="_blank">justice.cz</a>, ASPI nebo Beck-online.</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>Proč agent u některých zákonů nevrátí konkrétní paragraf?</summary>
-                <div class="detail-body">
-                    <p>e-Sbírka publikuje právní předpisy <strong>jednotlivě, jak byly vyhlášeny</strong> — tj. novely, ne konsolidované texty. Proto dotaz „§109 zákoníku práce (262/2006 Sb.)" nemusí najít přímý záznam pod touto citací.</p>
-                    <p>Agent v takovém případě automaticky použije <strong>sémantické vyhledávání</strong> a najde příslušné novely, jejichž text daný paragraf upravuje. Výsledek je stejný — doslovné znění z e-Sbírky.</p>
+                    <p>Ano — agent umí v jednom dotazu prohledat více zdrojů. Například:</p>
+                    <ul>
+                        <li>„Jak je ochrana osobních údajů upravena v českém zákoně i v GDPR?"</li>
+                        <li>„Najdi český zákon i EU směrnici o ochraně oznamovatelů"</li>
+                    </ul>
+                    <p>Agent zavolá příslušné nástroje pro každý zdroj a výsledky zobrazí pohromadě.</p>
                 </div>
             </details>
         </section>
@@ -397,7 +567,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            Poslední aktualizace: červen 2025 · Právní asistent ČR — M365 Copilot Agent · Zdroj: e-Sbírka zákonů (<a href="https://www.e-sbirka.cz" target="_blank">www.e-sbirka.cz</a>)
+            Poslední aktualizace: červenec 2025 · Právní asistent ČR v3.0 — M365 Copilot Agent · Zdroje: e-Sbírka (<a href="https://www.e-sbirka.cz" target="_blank">e-sbirka.cz</a>), justice.cz, EUR-Lex
         </div>
     </footer>
 

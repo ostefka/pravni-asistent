@@ -10,11 +10,12 @@
     <header class="site-header">
         <div class="container header-center">
             <h1>Právní asistent ČR</h1>
-            <p class="subtitle">Uživatelský návod k agentovi pro vyhledávání v českých zákonech v M365 Copilot</p>
+            <p class="subtitle">Uživatelský návod — české zákony, judikatura, legislativa EU a rozhodnutí SDEU v M365 Copilot</p>
             <div class="badge-row">
-                <span class="badge">112 753 fragmentů zákonů</span>
-                <span class="badge">46 376 právních předpisů</span>
-                <span class="badge">e-Sbírka OpenData</span>
+                <span class="badge">e-Sbírka · 112 753 fragmentů</span>
+                <span class="badge">Judikatura · české soudy</span>
+                <span class="badge">EUR-Lex · legislativa EU</span>
+                <span class="badge">SDEU · rozhodnutí</span>
             </div>
             <a href="index.html" class="back-link">&larr; Zpět na přehled agentů</a>
         </div>
@@ -26,22 +27,24 @@
             <h2>Co je Právní asistent ČR?</h2>
             <p>
                 <strong>Právní asistent ČR</strong> je agent pro M365 Copilot, který vám umožní vyhledávat
-                v plných textech českých zákonů a právních předpisů. Místo procházení e-Sbírky
-                se stačí zeptat přirozeným jazykem.
+                v českých zákonech, judikatuře, legislativě EU i rozhodnutích Soudního dvora EU. Místo procházení
+                více zdrojů se stačí zeptat přirozeným jazykem.
             </p>
             <p>
                 Agent využívá <strong>hybridní AI vyhledávání</strong> — kombinaci klíčových slov,
                 vektorových embeddingů a sémantického přehodnocení — takže najde relevantní
                 ustanovení i když použijete jiná slova než jsou v zákoně.
             </p>
-            <p>Agent čerpá data z jednoho zdroje:</p>
+            <p>Agent čerpá data ze čtyř zdrojů:</p>
             <ul>
                 <li><strong>e-Sbírka zákonů a mezinárodních smluv</strong> (<a href="https://www.e-sbirka.cz" target="_blank">www.e-sbirka.cz</a>) — otevřená data Ministerstva vnitra ČR, 46 376 právních předpisů od roku 1918 do současnosti, rozčleněných na 112 753 prohledávatelných fragmentů</li>
+                <li><strong>Judikatura českých soudů</strong> — rozhodnutí Nejvyššího soudu, Nejvyššího správního soudu, Ústavního soudu a krajských soudů z databáze justice.cz</li>
+                <li><strong>Legislativa EU (EUR-Lex)</strong> — nařízení, směrnice a rozhodnutí Evropské unie z databáze EUR-Lex</li>
+                <li><strong>Rozhodnutí SDEU</strong> — rozsudky a stanoviska Soudního dvora EU a Tribunálu</li>
             </ul>
 
             <div class="callout callout-tip">
-                <strong>Agent si nevymýšlí.</strong> Všechna data pocházejí z otevřených dat e-Sbírky. Pokud informaci nenajde, řekne vám to — místo toho, aby si ji vymyslel. Vždy cituje doslovné znění zákona.
-            </div>
+                <strong>Agent si nevymýšlí.</strong> Všechna data pocházejí z ověřených otevřených zdrojů. Pokud informaci nenajde, řekne vám to — místo toho, aby si ji vymyslel. Vždy cituje doslovné znění.</div>
 
             <h2>Jak začít</h2>
             <ol>
@@ -207,6 +210,106 @@
                 </div>
             </div>
 
+            <h3>Judikatura českých soudů</h3>
+            <p>Vyhledávejte v rozhodnutích českých soudů. Agent prohledá databázi judikatury z justice.cz.</p>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Náhrada škody</div>
+                    <div class="prompt-text">Najdi judikaturu Nejvyššího soudu k náhradě škody způsobené zaměstnancem</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Neplatná výpověď</div>
+                    <div class="prompt-text">Jak soudy rozhodují o neplatnosti výpovědi z pracovního poměru?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Ústavní soud</div>
+                    <div class="prompt-text">Najdi nálezy Ústavního soudu k právu na spravedlivý proces</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Správní soud</div>
+                    <div class="prompt-text">Jak Nejvyšší správní soud rozhodoval o přiměřenosti správních sankcí?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h3>Legislativa EU (EUR-Lex)</h3>
+            <p>Vyhledávejte v nařízeních, směrnicích a rozhodnutích Evropské unie.</p>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">GDPR</div>
+                    <div class="prompt-text">Co říká GDPR o právu být zapomenut?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">AI Act</div>
+                    <div class="prompt-text">Co říká nařízení EU o umělé inteligenci (AI Act) o vysoce rizikových systémech?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Směrnice o DPH</div>
+                    <div class="prompt-text">Najdi ustanovení EU směrnice o DPH pro přeshraniční služby</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Whistleblowing</div>
+                    <div class="prompt-text">Najdi obsah EU směrnice o ochraně oznamovatelů (whistleblowing)</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h3>Rozhodnutí SDEU</h3>
+            <p>Vyhledávejte v rozsudcích a stanoviscích Soudního dvora EU a Tribunálu.</p>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Ochrana spotřebitele</div>
+                    <div class="prompt-text">Jak SDEU rozhodoval o ochraně spotřebitele v online obchodě?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Hospodářská soutěž</div>
+                    <div class="prompt-text">Najdi rozhodnutí SDEU o zneužití dominantního postavení</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Předběžná otázka z ČR</div>
+                    <div class="prompt-text">Najdi rozhodnutí SDEU na předběžnou otázku položenou z České republiky</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Pracovní právo EU</div>
+                    <div class="prompt-text">Jak SDEU rozhodoval o převodech podniků a ochraně zaměstnanců?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
+            <h3>Kombinované dotazy napříč zdroji</h3>
+            <p>Zeptejte se na téma a agent prohledá více zdrojů najednou:</p>
+            <div class="prompt-grid">
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Zákon + judikatura</div>
+                    <div class="prompt-text">Co říká zákoník práce o výpovědi a jak to vykládají české soudy?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">ČR + EU</div>
+                    <div class="prompt-text">Jak je ochrana osobních údajů upravena v českém zákoně i v GDPR?</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">Kompletní přehled</div>
+                    <div class="prompt-text">Najdi český zákon, EU legislativu i judikaturu k tématu nekalé obchodní praktiky</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+                <div class="prompt" onclick="copyPrompt(this)">
+                    <div class="prompt-label">EU směrnice + ČR implementace</div>
+                    <div class="prompt-text">Jak Česko implementovalo EU směrnici o ochraně oznamovatelů? Najdi český zákon i původní směrnici.</div>
+                    <span class="copy-hint">kopírovat</span>
+                </div>
+            </div>
+
             <h2>Tipy pro lepší výsledky</h2>
             <div class="callout callout-tip">
                 <strong>Tip 1: Použijte citaci zákona.</strong> Pokud znáte číslo zákona, uveďte ho — agent najde přesný paragraf rychleji. Např. „§109 zákoníku práce (262/2006 Sb.)".
@@ -215,24 +318,27 @@
                 <strong>Tip 2: Buďte konkrétní.</strong> Místo „zákon o práci" zkuste „výpovědní doba pracovního poměru" — agent najde přesnější výsledky.
             </div>
             <div class="callout callout-tip">
-                <strong>Tip 3: Používejte filtry.</strong> Můžete omezit vyhledávání na typ předpisu (zákon, vyhláška), rok nebo účinnost k datu.
+                <strong>Tip 3: Používejte filtry.</strong> Můžete omezit vyhledávání na typ předpisu, rok, soud nebo typ EU dokumentu.
             </div>
             <div class="callout callout-tip">
-                <strong>Tip 4: Navazující dotazy.</strong> Po vyhledání můžete pokračovat: „Zobraz křížové odkazy na tento zákon" nebo „Kdy nabyl tento zákon účinnosti?"
+                <strong>Tip 4: Kombinujte zdroje.</strong> V jednom dotazu můžete požádat o český zákon i EU legislativu nebo judikaturu — agent prohledá více zdrojů najednou.
+            </div>
+            <div class="callout callout-tip">
+                <strong>Tip 5: Navazující dotazy.</strong> Po vyhledání můžete pokračovat: „Jak to vykládají české soudy?" nebo „Existuje k tomu EU směrnice?"
             </div>
 
             <h2>Jak agent funguje</h2>
             <p>
-                Agent využívá <strong>hybridní AI technologii</strong> postavenou na Azure AI Search:
+                Agent využívá <strong>hybridní AI technologii</strong> postavenou na Azure AI Search se čtyřmi nezávislými indexy:
             </p>
             <ol>
-                <li><strong>Klíčová slova</strong> — klasické textové vyhledávání v 112 753 fragmentech zákonů</li>
+                <li><strong>Klíčová slova</strong> — klasické textové vyhledávání v plných textech</li>
                 <li><strong>Vektorové embeddingy</strong> — každý fragment je převeden na vektorovou reprezentaci pomocí modelu text-embedding-3-large, což umožňuje najít sémanticky podobné výsledky</li>
                 <li><strong>Sémantický reranker</strong> — výsledky jsou přehodnoceny AI modelem podle relevance k vašemu dotazu</li>
             </ol>
             <p>
                 Díky této kombinaci agent najde relevantní ustanovení i když použijete jiná slova
-                než jsou v zákoně — například „propuštění z práce" najde i §52 zákoníku práce
+                než jsou ve zdroji — například „propuštění z práce" najde i §52 zákoníku práce
                 o výpovědních důvodech.
             </p>
 
@@ -241,7 +347,7 @@
 
     <footer class="site-footer">
         <div class="container-narrow">
-            Poslední aktualizace: červen 2025 · Právní asistent ČR — M365 Copilot Agent
+            Poslední aktualizace: červenec 2025 · Právní asistent ČR v3.0 — M365 Copilot Agent
         </div>
     </footer>
 
