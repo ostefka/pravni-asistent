@@ -53,7 +53,7 @@
                 <li class="yes">Vyhledat v plných textech zákonů, vyhlášek, nařízení vlády a dalších právních předpisů</li>
                 <li class="yes">Zobrazit doslovné znění konkrétního paragrafu, článku nebo odstavce</li>
                 <li class="yes">Filtrovat podle typu předpisu, roku, účinnosti k datu, sbírky (Sb., Sb.m.s.)</li>
-                <li class="yes">Zobrazit metadata předpisu, křížové odkazy a poslední novely</li>
+                <li class="yes">Zobrazit metadata předpisu a poslední novely</li>
                 <li class="yes">Vyhledat v judikatuře českých soudů — podle soudu, typu rozhodnutí, data, odkazovaného zákona</li>
                 <li class="yes">Zobrazit detail rozhodnutí podle ECLI identifikátoru</li>
                 <li class="yes">Vyhledat v legislativě EU — nařízení, směrnice, rozhodnutí, filtrace podle roku a typu</li>
@@ -91,11 +91,7 @@
                         <td>e-Sbírka</td>
                         <td>Metadata předpisu — název, typ, účinnost, stav, oblast úpravy, schvalovatel</td>
                     </tr>
-                    <tr>
-                        <td><code>getLawReferences</code></td>
-                        <td>e-Sbírka</td>
-                        <td>Křížové odkazy — na které zákony předpis odkazuje a které odkazují na něj</td>
-                    </tr>
+
                     <tr>
                         <td><code>getRecentChanges</code></td>
                         <td>e-Sbírka</td>
@@ -245,29 +241,7 @@
                 </div>
             </div>
 
-            <h4>Křížové odkazy</h4>
-            <div class="prompt-grid">
-                <div class="prompt" onclick="copyPrompt(this)">
-                    <div class="prompt-label">Odkazy zákoníku práce</div>
-                    <div class="prompt-text">Na které zákony odkazuje zákoník práce (262/2006 Sb.)?</div>
-                    <span class="copy-hint">kopírovat</span>
-                </div>
-                <div class="prompt" onclick="copyPrompt(this)">
-                    <div class="prompt-label">Kdo odkazuje na OZ</div>
-                    <div class="prompt-text">Které zákony odkazují na občanský zákoník (89/2012 Sb.)?</div>
-                    <span class="copy-hint">kopírovat</span>
-                </div>
-                <div class="prompt" onclick="copyPrompt(this)">
-                    <div class="prompt-label">Vazby trestního zákoníku</div>
-                    <div class="prompt-text">Zobraz křížové odkazy trestního zákoníku (40/2009 Sb.)</div>
-                    <span class="copy-hint">kopírovat</span>
-                </div>
-                <div class="prompt" onclick="copyPrompt(this)">
-                    <div class="prompt-label">Odkazy stavebního zákona</div>
-                    <div class="prompt-text">Na co odkazuje stavební zákon 283/2021 Sb.?</div>
-                    <span class="copy-hint">kopírovat</span>
-                </div>
-            </div>
+
 
             <h4>Poslední změny zákonů</h4>
             <div class="prompt-grid">
@@ -344,11 +318,7 @@
                     <div class="prompt-text">Najdi rozhodnutí soudů o bezdůvodném obohacení za posledních 5 let</div>
                     <span class="copy-hint">kopírovat</span>
                 </div>
-                <div class="prompt" onclick="copyPrompt(this)">
-                    <div class="prompt-label">ECLI detail</div>
-                    <div class="prompt-text">Zobraz detail rozhodnutí ECLI:CZ:NS:2023:21Cdo.1234.2023.1</div>
-                    <span class="copy-hint">kopírovat</span>
-                </div>
+
             </div>
 
             <h4>Legislativa EU (EUR-Lex)</h4>
